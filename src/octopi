@@ -11,14 +11,14 @@ function execute_chroot_script() {
   cp -vr --preserve=mode,timestamps $1/filesystem .
 
   #black magic of qemu-arm-static
-  cp `which qemu-arm-static` usr/bin
+  cp `which qemu-aarch64-static` usr/bin
   
   cp $2 chroot_script
   chmod 755 chroot_script
   cp $OCTOPI_SCRIPT_PATH/common.sh common.sh
   chmod 755 common.sh
   
-  chroot . usr/bin/qemu-arm-static /bin/bash /chroot_script
+  chroot . usr/bin/qemu-aarch64-static /bin/bash /chroot_script
   
   #cleanup
   rm chroot_script
